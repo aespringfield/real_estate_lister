@@ -1,0 +1,22 @@
+{
+  "name": "real_estate_lister",
+  "version": "1.0.0",
+  "description": "app to retrieve data for real estate listings",
+  "main": "listingData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anna Springfield",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.2",
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.2.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "jquery": "^3.2.1",
+    "mongoose": "^4.9.2"
+  }
+}
