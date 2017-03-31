@@ -4,7 +4,8 @@
   "description": "app to retrieve data for real estate listings",
   "main": "listingData.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/app.js"
   },
   "author": "Anna Springfield",
   "license": "ISC",
