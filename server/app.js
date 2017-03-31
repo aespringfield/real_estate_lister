@@ -2,11 +2,13 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-
-app.set('port', process.env.PORT || 3000);
-
 // connect to Mongo database
+var mongoose = require('mongoose');
+var mongoURI = 'mongodb://localhost:27017/realestate';
+var MongoDB = mongoose.connect(mongoURI).connection;
+
+// set port--either one picked by Heroku or port 3000
+app.set('port', process.env.PORT || 3000);
 
 // uses
 app.use(express.static('server/public', {
