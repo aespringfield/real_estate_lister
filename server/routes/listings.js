@@ -12,8 +12,6 @@ var ListingSchema = mongoose.Schema({
 
 var Listing = mongoose.model('Listing', ListingSchema);
 
-console.log(Listing.find());
-
 router.get('/houses', function (req, res) {
   Listing.find({"cost": {$exists: true}}, function(err, allHouses) {
     if(err) {
