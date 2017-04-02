@@ -32,8 +32,26 @@ router.get('/apartments', function (req, res) {
   });
 });
 
-// router.post('/house', function(req, res) {
-//
-// });
+router.post('/', function(req, res) {
+  var listing = new Listing();
+  console.log("request body", req.body);
+  listing.city = req.body.city;
+  listing.sqft = req.body.sqft;
+
+  if (req.body.cost) {
+    listing.cost = req.body.cost;
+  } else if (req.body.rent) {
+    listing.rent = req.body.rent;
+  }
+
+  listing.save(function(err, savedListing) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+    res.send(savedListing);
+  });
+
+});
 
 module.exports = router;
