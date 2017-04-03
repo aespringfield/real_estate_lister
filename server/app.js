@@ -10,7 +10,7 @@ var mongoURI = 'mongodb://localhost:27017/realestate';
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on("error", function(err){
-  console.log("Mongo Connection Error :" + err);
+  console.log("Mongo Connection Error :", err);
 });
 
 //If we successfully hooked up to the database, let us know!
