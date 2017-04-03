@@ -1,0 +1,48 @@
+.hidden {
+  display: none;
+}
+
+.listing {
+  margin: 10px;
+}
+
+.jumbotron {
+  background-image: url('house2.jpg');
+  background-repeat: no-repeat;
+  background-position: center 75%;
+  background-size: auto;
+  width: 100%;
+  min-height: 400px;
+}
+
+.headerBtns {
+  top: 300px;
+  position: absolute;
+}
+
+.btn-lg {
+  height: 50px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.browseBtn {
+  background-color: #859FBA;
+  opacity: 0.9
+}
+
+.listBtn {
+  background-color: snow;
+  opacity: 0.85;
+}
+
+.viewBtns {
+  margin: 0 auto;
+}
+
+.browseBtn:hover {
+  background-color: #5C7691;
+}
+
+.listBtn:hover {
+  background-color: #D6D1D1;
+}
