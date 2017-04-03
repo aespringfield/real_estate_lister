@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 var listings = require('./routes/listings.js');
 // connect to Mongo database
 var mongoose = require('mongoose');
-var mongoURI = 'mongodb://localhost:27017/realestate';
-var MongoDB = 'mongodb://realestfinder:realfind@ds149700.mlab.com:49700/realfinder'
+var mongoURI = 'mongodb://realestfinder:realfind@ds149700.mlab.com:49700/realfinder';
+var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on("error", function(err){
   console.log("Mongo Connection Error :", err);
