@@ -20,6 +20,8 @@ function enable(value) {
   } else {
     $('.newListing').off('submit', submitForm);
     $('.searchListings').off('submit', submitForm);
+    $('#searchBtn').on('click', showSearch);
+    $('#listBtn').on('click', showAddListing);
     $('.viewButtons').off('click', '.apartments', displayListings);
     $('.viewButtons').off('click', '.houses', displayListings);
   }
