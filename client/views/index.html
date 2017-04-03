@@ -14,10 +14,29 @@
         <h1>RealFinder</h1>
         <h2>Find your dream home!</h2>
       </div>
+      <div class=addListing>
+        <h2>List your property:</h2>
+        <form class="newListing">
+          <input class="cityInput" type="text" name="city" placeholder="City" value="">
+          <input class="sqftInput" type="text" name="sqft" placeholder="Square footage" value="">
+          <input class="priceInput" type="text" name="price" placeholder="Price" value="">
+          <select class="typeInput" name="type">
+            <option value="apartments">Apartment</option>
+            <option value="houses">House</option>
+          </select>
+          <input type="submit">
+        </form>
+    </div>
+    <div class="viewButtons">
+      <button class="apartments" data-listingtype="apartments">Show apartments</button>
+      <button class="houses" data-listingtype="houses">Show houses</button>
+    </div>
       <div class="listings">
-        <div class="apartments">
+        <div class="apartments hidden">
+          <h2>For rent:</h2>
         </div>
-        <div class="houses">
+        <div class="houses hidden">
+          <h2>For sale:</h2>
       </div>
     </div>
   <script type="text/javascript" src="vendors/bootstrap/bootstrap.js"></script>
