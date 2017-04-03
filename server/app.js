@@ -7,7 +7,7 @@ var listings = require('./routes/listings.js');
 // connect to Mongo database
 var mongoose = require('mongoose');
 var mongoURI = 'mongodb://localhost:27017/realestate';
-var MongoDB = mongoose.connect(mongoURI).connection;
+var MongoDB = 'mongodb://realestfinder:realfind@ds149700.mlab.com:49700/realfinder'
 
 MongoDB.on("error", function(err){
   console.log("Mongo Connection Error :", err);
