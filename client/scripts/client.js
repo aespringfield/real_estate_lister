@@ -27,18 +27,21 @@ function enable(value) {
   }
 }
 
+// shows houses or apartments on button clicks
 function displayListings() {
   var $el = $(this);
   var typeToShow = $el.data('listingtype');
   getListings(typeToShow);
 }
 
+// shows search fields
 function showSearch() {
   console.log("click");
   $('.addListing').addClass('hidden');
   $('.searchDiv').removeClass('hidden');
 }
 
+// shows fields to add a listing
 function showAddListing() {
   $('.searchDiv').addClass('hidden');
   $('.addListing').removeClass('hidden');
@@ -58,6 +61,8 @@ function submitForm(event) {
   }
 }
 
+// generates an object with a type (apartments or houses)
+// and url (to be passed to the server on a get request)
 function createSearchURL($form) {
   var type = $form.find('.typeInput').val();
   var criterion = $form.find('.criterionInput').val();
@@ -73,6 +78,9 @@ function createSearchURL($form) {
   return {type: type, url: url};
 }
 
+// takes search object & extracts url & type (apartments/houses)
+// sends get request to query database on url parameters
+// appends results
 function getSearchResults(searchObj) {
   console.log(searchObj.url);
   console.log(searchObj.type);
@@ -86,6 +94,7 @@ function getSearchResults(searchObj) {
   });
 }
 
+// creates an object to pass to the server when posting a new listing
 function createListingObj($form) {
   var city = $form.find('.cityInput').val();
   var sqft = $form.find('.sqftInput').val();
