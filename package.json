@@ -17,7 +17,11 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify": "^2.2.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-express-server": "^0.5.3",
     "jquery": "^3.2.1",
     "mongoose": "^4.9.2"
+  },
+  "devDependencies": {
+    "grunt-contrib-connect": "^1.0.2"
   }
 }

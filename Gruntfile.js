@@ -71,13 +71,36 @@ module.exports = function(grunt) {
       files: ['client/scripts/*.js', 'client/views/*.html'],
       // What tasks should I complete
       tasks: ['uglify', 'copy']
-    }
+    },
+  //   express: {
+  //   options: {
+  //     port: 3000,
+  //     // Override defaults here
+  //   },
+  //   dev: {
+  //     options: {
+  //       script: 'server/app.js'
+  //     }
+  //   },
+  //   prod: {
+  //     options: {
+  //       script: 'server/app.js',
+  //       node_env: 'production'
+  //     }
+  //   },
+  //   test: {
+  //     options: {
+  //       script: 'server/app.js'
+  //     }
+  //   }
+  // }
   });
   // LOAD PLUGIN: Bring the plugin into the project
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  // grunt.loadNpmTasks('grunt-express-server');
 
   // REGISTER TASK: Actually use the plugin
-  grunt.registerTask('default', [/*'uglify',*/'copy','watch']);
+  grunt.registerTask('default', [/*'uglify',*/'copy', /*'express',*/ 'watch']);
 };

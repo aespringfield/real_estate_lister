@@ -1,44 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="views/style.css">
-    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.css">
-    <script type="text/javascript" src="vendors/jquery.js"></script>
-    <script type="text/javascript" src="scripts/client.js"></script>
-    <title>RealFinder</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <h1>RealFinder</h1>
-        <h2>Find your dream home!</h2>
-      </div>
-      <div class=addListing>
-        <h2>List your property:</h2>
-        <form class="newListing">
-          <input class="cityInput" type="text" name="city" placeholder="City" value="">
-          <input class="sqftInput" type="text" name="sqft" placeholder="Square footage" value="">
-          <input class="priceInput" type="text" name="price" placeholder="Price" value="">
-          <select class="typeInput" name="type">
-            <option value="apartments">Apartment</option>
-            <option value="houses">House</option>
-          </select>
-          <input type="submit">
-        </form>
-    </div>
-    <div class="viewButtons">
-      <button class="apartments" data-listingtype="apartments">Show apartments</button>
-      <button class="houses" data-listingtype="houses">Show houses</button>
-    </div>
-      <div class="listings">
-        <div class="apartments hidden">
-          <h2>For rent:</h2>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="views/style.css">
+  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.css">
+  <script type="text/javascript" src="vendors/jquery.js"></script>
+  <script type="text/javascript" src="scripts/client.js"></script>
+  <title>RealFinder</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="header row">
+      <div class="jumbotron">
+        <h1 class="display-3">Find your dream home</h1>
+        <div class="headerBtns">
+          <button class="btn btn-lg browseBtn" id="searchBtn" role="button">Search properties</button>
+          <button class="btn btn-lg listBtn" id="listBtn" role="button">List a property</button>
         </div>
-        <div class="houses hidden">
-          <h2>For sale:</h2>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+  <div class="col-md-8 searchDiv hidden">
+    <form class="searchListings" data-formname="searchListings">
+      <select class="typeInput" name="type">
+        <option value="apartments">Apartment</option>
+        <option value="houses">House</option>
+      </select>
+      <select class="criterionInput" name="criterion">
+        <option value="sqft">Square footage</option>
+        <option value="price">Price</option>
+      </select>
+      <select class="operatorInput" name="operator">
+        <option value="lte">is no more than</option>
+        <option value="gte">is at least</option>
+      </select>
+      <input class="valueInput" type="number" name="valueInput" placeholder="Value" value="">
+      <input type="submit" value="Search">
+    </form>
+  </div>
+  <div class="addListing col-md-8 hidden">
+    <form class="newListing" data-formname="newListing">
+      <input class="cityInput" type="text" name="city" placeholder="City" value="">
+      <input class="sqftInput" type="number" name="sqft" placeholder="Square footage" value="">
+      <input class="priceInput" type="number" name="price" placeholder="Price" value="">
+      <select class="typeInput" name="type">
+        <option value="apartments">Apartment</option>
+        <option value="houses">House</option>
+      </select>
+      <input type="submit">
+    </form>
+  </div>
+  <div class="btn-group viewButtons col-md 4" data-toggle="buttons">
+    <label class="btn btn-primary apartments" data-listingtype="apartments">
+      <input type="radio" name="options" data-listingtype="apartments" autocomplete="off">Show apartments
+    </label>
+    <label class="btn btn-primary houses" data-listingtype="houses">
+      <input type="radio" name="options" data-listingtype="houses" autocomplete="off">Show houses
+    </label>
+  </div>
+</div>
+  <div class="listings">
+    <div class="apartments hidden">
+      <h2>For rent:</h2>
+      <div class="row display">
       </div>
     </div>
+    <div class="houses hidden">
+      <h2>For sale:</h2>
+      <div class="row display">
+      </div>
+    </div>
+  </div>
   <script type="text/javascript" src="vendors/bootstrap/bootstrap.js"></script>
-  </body>
+</body>
 </html>
