@@ -36,12 +36,39 @@ router.get('/houses', function (req, res) {
 });
 
 router.get('/apartments', function (req, res) {
-  Listing.find({"rent": {$exists: true}},function(err, allApts) {
+  Listing.find({"rent": {$exists: true}}, function(err, allApts) {
     if(err) {
       console.log(err);
       res.sendStatus(500);
     }
     res.send(allApts);
+  });
+});
+
+router.get('/:type/:key/:operator/:value', function (req, res) {
+  var type = req.params.type;
+  var value = parseInt(req.params.value);
+  var operator = req.params.operator;
+  var key = req.params.key;
+  var query = {};
+  if (operator === 'lte') {
+    query[key] = {$lte: value};
+  } else if (operator === 'gte') {
+    query[key] = {$gte: value};
+  }
+  if (key === 'sqft') {
+    if (type === 'apartments') {
+      query['rent'] = {$exists: true};
+    } else if (type === 'houses') {
+      query['cost'] = {$exists: true};
+    }
+  }
+  Listing.find(query, function(err, foundApts){
+    if(err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+    res.send(foundApts);
   });
 });
 

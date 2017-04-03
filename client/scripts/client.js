@@ -12,34 +12,83 @@ function init() {
 function enable(value) {
   if (value) {
     $('.newListing').on('submit', submitForm);
+    $('.searchListings').on('submit', submitForm);
+    $('#searchBtn').on('click', showSearch);
+    $('#listBtn').on('click', showAddListing);
     $('.viewButtons').on('click', '.apartments', displayListings);
     $('.viewButtons').on('click', '.houses', displayListings);
   } else {
     $('.newListing').off('submit', submitForm);
+    $('.searchListings').off('submit', submitForm);
     $('.viewButtons').off('click', '.apartments', displayListings);
     $('.viewButtons').off('click', '.houses', displayListings);
   }
 }
 
 function displayListings() {
-  var type = $(this).data('listingtype');
-  getListings(type);
-  showToggle(type);
+  var $el = $(this);
+  var typeToShow = $el.data('listingtype');
+  getListings(typeToShow);
+}
+
+function showSearch() {
+  console.log("click");
+  $('.addListing').addClass('hidden');
+  $('.searchDiv').removeClass('hidden');
+}
+
+function showAddListing() {
+  $('.searchDiv').addClass('hidden');
+  $('.addListing').removeClass('hidden');
 }
 
 // submits newListing form
 function submitForm(event) {
   event.preventDefault();
-  $listingForm = $(this);
-  var listingObj = createListingObj($listingForm);
-  postNewListing(listingObj);
+  $form = $(this);
+  if ($form.data('formname') === "newListing") {
+    var listingObj = createListingObj($form);
+    postNewListing(listingObj);
+  } else if ($form.data('formname') === "searchListings") {
+    console.log("searching");
+    var searchObj = createSearchURL($form);
+    getSearchResults(searchObj);
+  }
 }
 
-function createListingObj($listingForm) {
-  var city = $listingForm.find('.cityInput').val();
-  var sqft = $listingForm.find('.sqftInput').val();
-  var price = $listingForm.find('.priceInput').val();
-  var type = $listingForm.find('.typeInput').val();
+function createSearchURL($form) {
+  var type = $form.find('.typeInput').val();
+  var criterion = $form.find('.criterionInput').val();
+  var operator = $form.find('.operatorInput').val();
+  var value = $form.find('.valueInput').val();
+  var key;
+  if (criterion === 'sqft') {
+    key = criterion;
+  } else if (criterion === 'price') {
+    key = indicateCostOrRent(type);
+  }
+  var url= '/listings/' + type + '/' + key + '/' + operator + '/' + value;
+  return {type: type, url: url};
+}
+
+function getSearchResults(searchObj) {
+  console.log(searchObj.url);
+  console.log(searchObj.type);
+  $.ajax({
+    type: 'GET',
+    url: searchObj.url,
+    success: function(res) {
+      console.log(res);
+      appendToDOM(res, searchObj.type);
+    }
+  });
+}
+
+function createListingObj($form) {
+  var city = $form.find('.cityInput').val();
+  var sqft = $form.find('.sqftInput').val();
+  var price = $form.find('.priceInput').val();
+  var type = $form.find('.typeInput').val();
   // var priceKey = indicateCostOrRent(type);
   var listingObj = {
     city: city,
@@ -81,12 +130,16 @@ function getListings(type) {
 // appends each item of an array of listings to the correct div on the document
 // type parameter is either apartments or houses
 function appendToDOM(listingsArray, type) {
-  var $el = $('.listings').find('.' + type);
+  var $el = $('.listings').find('.' + type).find('.display');
+  $el.empty();
   for (var i = 0; i < listingsArray.length; i++) {
     var listing = listingsArray[i];
     var listingEl = createListingEl(listing, type);
-    $el.append(listingEl);
+    $el.append('<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12"></div>');
+    $el.children().last().append(listingEl);
   }
+  console.log("type",type);
+  showToggle(type);
 }
 
 // takes a listing and a type ("houses" or "apartments") and creates an HTML element
@@ -96,9 +149,9 @@ function createListingEl(listing, type) {
     var price = listing[priceKey];
     var sqft = listing.sqft;
     var listingEl = '<div class="listing">' +
-              '<p>City: ' + city + '</p>' +
-              '<p>Square footage: ' + sqft + '</p>' +
-              '<p>' + capitalize(priceKey) + ': ' + price + '</p>' +
+              '<div><b>City:</b> ' + city + '</div>' +
+              '<div><b>Square footage:</b> ' + sqft + '</div>' +
+              '<div><b>' + capitalize(priceKey) + ':</b> ' + price + '</div>' +
               '</div>';
     return listingEl;
 }
