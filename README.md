@@ -49,7 +49,7 @@ Deployed using hosting by [Heroku](https://www.heroku.com/) and [mlab](https://m
 
 ## Built With
 
-* [AngularJS](https://angularjs.org/) - JavaScript framework
+* [jQuery](https://jquery.com/) - Front-end JavaScript library
 * [Node.js](https://nodejs.org/en/) - JavaScript runtime
 * [Express](https://expressjs.com/) - Node.js framework
 * [MongoDB](https://www.mongodb.com/) - Database used
