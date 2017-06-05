@@ -29,6 +29,18 @@ Run Grunt in the root directory
 $ grunt
 ```
 
+Import listing data from the directory that contains ‘listingData.js’.
+
+```
+$ mongoimport --db realestate --collection listings --file listingData.js
+```
+
+Start a local server
+
+```
+$ npm start
+```
+
 Access the local installation via localhost.
 
 ## Deployment
